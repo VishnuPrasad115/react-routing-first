@@ -7,9 +7,8 @@ const BASE_URL = 'http://localhost:5000';
 
 var ReqUrl=BASE_URL + '/ecomm/api/v1/products';
 function ProductList() {
-	const [categoryList, setCategoryList] = useState([]);
+	const [categoryList, ] = useState([]);
 	const [productList, setProductList] = useState([]);
-	const [username, setUsername] = useState('User');
 	const [currentCategory, setCurrentCategory] = useState('');
 	const [minPrice, setMinPrice] = useState(0);
 	const [maxPrice, setMaxPrice] = useState(-1);
@@ -22,7 +21,6 @@ function ProductList() {
 		const data = {
 			token: localStorage.getItem("token")
 		};
-		setUsername(localStorage.getItem("username"));
 		
 		if (categoryId) {
 			setCurrentCategory(categoryId);
@@ -99,14 +97,6 @@ function ProductList() {
 		window.location.reload(true);
 	}
 
-	const logoutFn = () => {
-        localStorage.removeItem('username');
-        localStorage.removeItem('userId');
-		localStorage.removeItem('token')
-
-        window.location.href = "/";
-    }
-
 	return (
 		<div id="productListPage">
 			<div className="container">
@@ -122,7 +112,7 @@ function ProductList() {
 							<div>
 								{
 									categoryList.map((category) => (
-										<Link onClick={() => updateCategory(category.id)} key={category.id} className={"d-flex text-decoration-none " + (category.id == currentCategory ? 'active' : undefined)} to={"/products?categoryId=" + category.id}>{category.name}</Link>
+										<Link onClick={() => updateCategory(category.id)} key={category.id} className={"d-flex text-decoration-none " + (category.id === currentCategory ? 'active' : undefined)} to={"/products?categoryId=" + category.id}>{category.name}</Link>
 									))
 								}
 							</div>
@@ -164,7 +154,7 @@ function ProductList() {
 								productList.map((product) => (
 									<Link key={product.id} className="product-item text-decoration-none d-inline-block" to={"/home/product/" + product.id + "/details"}>
 										<div className="product-img">
-											<img src="https://img.favpng.com/8/17/0/product-design-clip-art-logo-food-png-favpng-TsCQEsJH2LUYN3d5Q6RzrTsqL.jpg" />
+											<img alt="alt" src="https://img.favpng.com/8/17/0/product-design-clip-art-logo-food-png-favpng-TsCQEsJH2LUYN3d5Q6RzrTsqL.jpg" />
 										</div>
 										<div className="product-name text-center">{product.name}</div>
 										<div className="product-price text-center">₹ {product.cost}</div>

@@ -7,10 +7,8 @@ const BASE_URL = 'http://localhost:5000';
 
 function ProductDetails() {
     const [productDetails, setProductDetails] = useState({});
-    const [username, setUsername] = useState('User');
     const {productId} = useParams()
     useEffect(() => {
-        setUsername(localStorage.getItem("username"));
         console.log(productId)
         const data = {
             id:productId,
@@ -70,14 +68,6 @@ function ProductDetails() {
         
     }
 
-    const logoutFn = () => {
-        localStorage.removeItem('username');
-        localStorage.removeItem('userId');
-        localStorage.removeItem('token')
-
-        window.location.href = "/";
-    }
-
     return (
         <div id="productDetailsPage">
             <div className="container">
@@ -85,7 +75,7 @@ function ProductDetails() {
                     <div className="product-details-wrapper d-flex flex-row">
                         <div className="product-img d-flex">
                             <div>
-                                <img src="https://img.favpng.com/8/17/0/product-design-clip-art-logo-food-png-favpng-TsCQEsJH2LUYN3d5Q6RzrTsqL.jpg" />
+                                <img alt="alt" src="https://img.favpng.com/8/17/0/product-design-clip-art-logo-food-png-favpng-TsCQEsJH2LUYN3d5Q6RzrTsqL.jpg" />
                             </div>
                         </div>
                         <div className="product-details-box d-flex flex-column">
@@ -96,7 +86,7 @@ function ProductDetails() {
                                 <div className="product-description-data">{productDetails.description}</div>
                             </div>
                             {
-                                productDetails && productDetails.addedToCart == 1 ? (
+                                productDetails && productDetails.addedToCart === 1 ? (
                                     <Link
                                         className="product-details-action btn btn-primary text-decoration-none"
                                         to={"/cart"}

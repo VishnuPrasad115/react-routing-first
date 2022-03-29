@@ -1,24 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../styles/home.css";
 
 const BASE_URL = "http://localhost:5000";
 
 function Landing() {
   const [categoryList, setCategoryList] = useState([]);
-  const [username, setUsername] = useState("User");
-
-  const logoutFn = () => {
-    localStorage.removeItem("username");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("token");
-
-    window.location.href = "/";
-  };
 
   useEffect(() => {
-    setUsername(localStorage.getItem("username"));
     const data = {
       token: localStorage.getItem("token"),
     };

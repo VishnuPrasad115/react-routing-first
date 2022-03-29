@@ -33,12 +33,6 @@ function Checkout() {
     }, []);
 
     const confirmPayment = () => {
-        const data = {
-            orderId: orderDetails.orderId,
-            userId: localStorage.getItem('userId'),
-            payment: true,
-            token: localStorage.getItem("token")
-        };
         setConfirmPaymentSuccess(true);
         // axios.post(BASE_URL + '/api/v1/order/edit', data)
         //     .then(function (response) {
@@ -88,7 +82,7 @@ function Checkout() {
                                 orderDetails.productsSelected && orderDetails.productsSelected.map((product) => (
                                     <div className="order-details-product d-flex flex-row" key={product.id}>
                                         <div className="order-details-product-img d-flex">
-                                            <img src="https://img.favpng.com/8/17/0/product-design-clip-art-logo-food-png-favpng-TsCQEsJH2LUYN3d5Q6RzrTsqL.jpg" />
+                                            <img alt="alt" src="https://img.favpng.com/8/17/0/product-design-clip-art-logo-food-png-favpng-TsCQEsJH2LUYN3d5Q6RzrTsqL.jpg" />
                                         </div>
                                         <div className="order-details-product-data d-flex flex-column">
                                             <div>{product.name}</div>

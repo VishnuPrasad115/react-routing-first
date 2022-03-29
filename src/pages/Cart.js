@@ -9,11 +9,9 @@ const BASE_URL = 'http://localhost:5000';
 
 function Cart() {
     const [orderDetails, setOrderDetails] = useState({});
-    const [username, setUsername] = useState('User');
     const [cartId, setCartId] = useState('');
 
     useEffect(() => {
-        setUsername(localStorage.getItem("username"));
         setCartId(localStorage.getItem("cartId"));
         fetchOrderDetails();
     }, []);
@@ -34,7 +32,7 @@ function Cart() {
             
         }).then(response=>{
             response.data.productsSelected.forEach(element => {
-                if(productId!= element.id)
+                if(productId!== element.id)
                     data.productIds.push(element.id)
             }); 
             axios.put(BASE_URL + '/ecomm/api/v1/carts/'+cartId,data,{
@@ -76,15 +74,6 @@ function Cart() {
         });
 
     }
-
-    const logoutFn = () => {
-        localStorage.removeItem('username');
-        localStorage.removeItem('userId');
-        localStorage.removeItem('token')
-
-        window.location.href = "/";
-    }
-
     return (
         <div id="cartPage">
             <div className="container">
@@ -97,7 +86,7 @@ function Cart() {
                                 orderDetails.productsSelected && orderDetails.productsSelected.length > 0 ? orderDetails.productsSelected.map((product) => (
                                     <div className="order-details-product d-flex flex-row" key={product.id}>
                                         <div className="order-details-product-img d-flex">
-                                            <img src="https://img.favpng.com/8/17/0/product-design-clip-art-logo-food-png-favpng-TsCQEsJH2LUYN3d5Q6RzrTsqL.jpg" />
+                                            <img alt="alt" src="https://img.favpng.com/8/17/0/product-design-clip-art-logo-food-png-favpng-TsCQEsJH2LUYN3d5Q6RzrTsqL.jpg" />
                                         </div>
                                         <div className="order-details-product-data d-flex flex-column">
                                             <div>{product.name}</div>
