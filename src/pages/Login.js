@@ -22,7 +22,7 @@ function Login() {
     axios
       .post(BASE_URL + "/ecomm/api/v1/auth/signin", data)
       .then(function (response) {
-        if (response.status == 200) {
+        if (response.status === 200) {
           localStorage.setItem("username", response.data.username);
           localStorage.setItem("userId", response.data.id);
           localStorage.setItem("token", response.data.accessToken);
@@ -52,7 +52,7 @@ function Login() {
         }
       })
       .catch(function (error) {
-        if (error.response.status == 404) {
+        if (error.response.status === 404) {
           setAuthMessage(error.response.data.message);
         }
       });
@@ -72,7 +72,7 @@ function Login() {
     axios
       .post(BASE_URL + "/ecomm/api/v1/auth/signup", data)
       .then(function (response) {
-        if (response.status == 200) {
+        if (response.status === 200) {
           window.location.href = "/";
         }
       })

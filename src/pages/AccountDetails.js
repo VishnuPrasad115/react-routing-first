@@ -1,12 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import '../styles/accountDetails.css';
 
 const BASE_URL = 'http://localhost:5000';
 
 function AccountDetails() {
-    const [username, setUsername] = useState('User');
     const [showUsername, setShowUsername] = useState(localStorage.getItem("username"));
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -15,20 +13,11 @@ function AccountDetails() {
     const [errorMsg, setErrorMsg] = useState('');
     const [successMsg, setSuccessMsg] = useState('');
 
-    const logoutFn = () => {
-        localStorage.removeItem('username');
-        localStorage.removeItem('userId');
-        localStorage.removeItem('token')
-
-        window.location.href = "/";
-    }
-
     useEffect(() => {
         const data = {
             // userId: localStorage.getItem("userId"),
             token: localStorage.getItem("token")
         };
-        setUsername(localStorage.getItem("username"));
         setShowUsername(localStorage.getItem("username"));
         axios.post(BASE_URL + '/api/v1/user/details', data)
             .then(function (response) {
