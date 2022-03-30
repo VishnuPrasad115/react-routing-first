@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Suspense } from "react/cjs/react.development";
+import { Suspense } from "react";
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import Home from "../pages/Home";
